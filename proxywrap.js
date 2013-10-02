@@ -107,6 +107,7 @@ exports.proxy = function(iface) {
 		function onReadable() {
 			var chunk;
 			while (null != (chunk = socket.read())) {
+				console.log("CHUNK: "+chunk);
 				buf = Buffer.concat([buf, chunk]);
 				header += chunk.toString('ascii');
 
