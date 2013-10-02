@@ -111,7 +111,10 @@ exports.proxy = function(iface) {
 				header += chunk.toString('ascii');
 
 				// if the first 5 bytes aren't PROXY, something's not right.
-				if (header.length >= 5 && header.substr(0, 5) != 'PROXY') return socket.destroy('PROXY protocol error');
+				if (header.length >= 5 && header.substr(0, 5) != 'PROXY') {
+					console.log("ERROR HEADER: "+header);
+					return socket.destroy('PROXY protocol error');
+				}
 
 				var crlf = header.indexOf('\r');
 				if (crlf > 0) {
